@@ -392,13 +392,13 @@ serial_med <- function(x, m1, m2, y, cov, dat, boot = 5000, seeder = 100) {
 ```
 
 **Age -> Pulse Pressure -> WMSA -> Fluid Cognition (sex controlled)**
-```{r}
-(pulse_fluid <- serial_med(x = "age", m1 = "pulse_pressure", m2 =  "log_hypo", y = "fluid_std", cov = "Sex", dat = dat_sup, boot = 5000))
+```{r, warning = FALSE}
+(pulse_fluid <- serial_med(x = "age", m1 = "pulse_pressure", m2 =  "log_hypo", y = "fluid_std", cov = "Sex", dat = dat_sup, boot = 1000))
 ```
 
 **Age -> Pulse Pressure -> WMSA -> Verbal Cognition (sex controlled)**
-```{r}
-(pulse_verbal <- serial_med(x = "age", m1 = "pulse_pressure", m2 =  "log_hypo", y = "verbal_std", cov = "Sex", dat = dat_sup, boot = 5000))
+```{r, warning = FALSE}
+(pulse_verbal <- serial_med(x = "age", m1 = "pulse_pressure", m2 =  "log_hypo", y = "verbal_std", cov = "Sex", dat = dat_sup, boot = 1000))
 ```
 
 

@@ -1976,8 +1976,6 @@ using lavaan::sem()</strong></p>
 <p><strong>Age -&gt; Pulse Pressure -&gt; WMSA -&gt; Fluid Cognition
 (sex controlled)</strong></p>
 <pre class="r"><code>(pulse_fluid &lt;- serial_med(x = &quot;age&quot;, m1 = &quot;pulse_pressure&quot;, m2 =  &quot;log_hypo&quot;, y = &quot;fluid_std&quot;, cov = &quot;Sex&quot;, dat = dat_sup, boot = 1000))</code></pre>
-<pre><code>## Warning: lavaan-&gt;lav_data_full():  
-##    some observed variances are (at least) a factor 1000 times larger than others; use varTable(fit) to investigate</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["parameter"],"name":[1],"type":["chr"],"align":["left"]},{"label":["coef_std"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ci_lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ci_upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p_value_uncorrected"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"a1*b1","2":"0.002163","3":"-0.002324","4":"0.0025898","5":"0.915502"},{"1":"a2*b2","2":"-0.126601","3":"-0.012644","4":"-0.0029234","5":"0.001696"},{"1":"a1*d21*b2","2":"-0.018314","3":"-0.002115","4":"-0.0001365","5":"0.025723"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1985,9 +1983,7 @@ using lavaan::sem()</strong></p>
 </div>
 <p><strong>Age -&gt; Pulse Pressure -&gt; WMSA -&gt; Verbal Cognition
 (sex controlled)</strong></p>
-<pre class="r"><code>(pulse_fluid &lt;- serial_med(x = &quot;age&quot;, m1 = &quot;pulse_pressure&quot;, m2 =  &quot;log_hypo&quot;, y = &quot;verbal_std&quot;, cov = &quot;Sex&quot;, dat = dat_sup, boot = 1000))</code></pre>
-<pre><code>## Warning: lavaan-&gt;lav_data_full():  
-##    some observed variances are (at least) a factor 1000 times larger than others; use varTable(fit) to investigate</code></pre>
+<pre class="r"><code>(pulse_verbal &lt;- serial_med(x = &quot;age&quot;, m1 = &quot;pulse_pressure&quot;, m2 =  &quot;log_hypo&quot;, y = &quot;verbal_std&quot;, cov = &quot;Sex&quot;, dat = dat_sup, boot = 1000))</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["parameter"],"name":[1],"type":["chr"],"align":["left"]},{"label":["coef_std"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ci_lower"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ci_upper"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p_value_uncorrected"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"a1*b1","2":"-0.007332","3":"-0.003244","4":"0.0023689","5":"0.76001"},{"1":"a2*b2","2":"-0.078979","3":"-0.010165","4":"0.0007425","5":"0.09043"},{"1":"a1*d21*b2","2":"-0.011589","3":"-0.001594","4":"0.0002115","5":"0.13342"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
