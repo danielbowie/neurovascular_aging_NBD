@@ -1,0 +1,1710 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Primary Analyses},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Primary Analyses}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat\_all }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"merged\_data\_final.csv"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 203 Columns: 24
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr  (2): Study, Gender
+## dbl (22): Subj_ID, age, prefx, Systolic, Diastolic, HR, pulse_pressure, stat...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat\_m }\OtherTok{\textless{}{-}}\NormalTok{ dat\_all }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Gender }\SpecialCharTok{==} \StringTok{"M"}\NormalTok{)}
+\NormalTok{dat\_f }\OtherTok{\textless{}{-}}\NormalTok{ dat\_all }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Gender }\SpecialCharTok{==} \StringTok{"F"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{descriptive-statistics-overall-and-by-study}{%
+\section{Descriptive statistics overall and by
+study}\label{descriptive-statistics-overall-and-by-study}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(overall }\OtherTok{\textless{}{-}}\NormalTok{ dat\_all }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}
+    \AttributeTok{mean\_age =} \FunctionTok{mean}\NormalTok{(age),}
+    \AttributeTok{sd\_age =} \FunctionTok{sd}\NormalTok{(age),}
+    \AttributeTok{min\_age =} \FunctionTok{min}\NormalTok{(age),}
+    \AttributeTok{max\_age =} \FunctionTok{max}\NormalTok{(age),}
+    \AttributeTok{total\_n =} \FunctionTok{n}\NormalTok{()}
+\NormalTok{  ))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 5
+##   mean_age sd_age min_age max_age total_n
+##      <dbl>  <dbl>   <dbl>   <dbl>   <int>
+## 1     55.7   16.3    19.0    88.0     203
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(study }\OtherTok{\textless{}{-}}\NormalTok{ dat\_all }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Study) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}
+    \AttributeTok{mean\_age =} \FunctionTok{mean}\NormalTok{(age),}
+    \AttributeTok{sd\_age =} \FunctionTok{sd}\NormalTok{(age),}
+    \AttributeTok{min\_age =} \FunctionTok{min}\NormalTok{(age),}
+    \AttributeTok{max\_age =} \FunctionTok{max}\NormalTok{(age),}
+    \AttributeTok{total\_n =} \FunctionTok{n}\NormalTok{()}
+\NormalTok{  ))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 6
+##   Study mean_age sd_age min_age max_age total_n
+##   <chr>    <dbl>  <dbl>   <dbl>   <dbl>   <int>
+## 1 arr       70.8   8.95    55.8    88.0      44
+## 2 opa       46.3  17.3     19.0    75.1      44
+## 3 pcc       42.8  15.1     25.2    75.1      49
+## 4 pea       61.3   5.63    50.7    73.4      66
+\end{verbatim}
+
+Reviewer requested analyses--is there an effect of BP or cholesterol
+medication status when controlling for age? (Older adults only due to
+linearity assumption)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat\_all }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(beta\_blocker) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{bp =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   beta_blocker    bp
+##          <dbl> <int>
+## 1            0   176
+## 2            1    26
+## 3           NA     1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat\_all }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(statins) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{durga =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   statins durga
+##     <dbl> <int>
+## 1       0   163
+## 2       1    39
+## 3      NA     1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat.old }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(dat\_all, age }\SpecialCharTok{\textgreater{}=} \DecValTok{50}\NormalTok{)}
+
+\DocumentationTok{\#\# Beta blocker status}
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{lm}\NormalTok{(pulse\_pressure}\SpecialCharTok{\textasciitilde{}}\NormalTok{beta\_blocker}\SpecialCharTok{*}\NormalTok{age,}\AttributeTok{data =}\NormalTok{ dat.old))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = pulse_pressure ~ beta_blocker * age, data = dat.old)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.31814 -0.55381  0.03463  0.54512  2.02708 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)      -3.21077    0.67713  -4.742 5.16e-06 ***
+## beta_blocker     -1.46466    1.65632  -0.884    0.378    
+## age               0.05115    0.01065   4.801 4.00e-06 ***
+## beta_blocker:age  0.02433    0.02381   1.022    0.309    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.8813 on 140 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.2462, Adjusted R-squared:   0.23 
+## F-statistic: 15.24 on 3 and 140 DF,  p-value: 1.234e-08
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{lm}\NormalTok{(prefx\_std}\SpecialCharTok{\textasciitilde{}}\NormalTok{beta\_blocker}\SpecialCharTok{*}\NormalTok{age,}\AttributeTok{data =}\NormalTok{ dat.old))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = prefx_std ~ beta_blocker * age, data = dat.old)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.5408 -0.5037 -0.1035  0.4508  1.9113 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)       3.973387   0.533000   7.455 8.32e-12 ***
+## beta_blocker     -2.259656   1.321239  -1.710   0.0894 .  
+## age              -0.064603   0.008366  -7.722 1.93e-12 ***
+## beta_blocker:age  0.023477   0.018977   1.237   0.2181    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.7049 on 141 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.4422, Adjusted R-squared:  0.4303 
+## F-statistic: 37.26 on 3 and 141 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{lm}\NormalTok{(log\_hypo}\SpecialCharTok{\textasciitilde{}}\NormalTok{beta\_blocker}\SpecialCharTok{*}\NormalTok{age,}\AttributeTok{data =}\NormalTok{ dat.old))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = log_hypo ~ beta_blocker * age, data = dat.old)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.43843 -0.12490 -0.02511  0.10229  0.58013 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)       1.989595   0.143821  13.834  < 2e-16 ***
+## beta_blocker     -0.082311   0.385215  -0.214    0.831    
+## age               0.018681   0.002257   8.275 9.08e-14 ***
+## beta_blocker:age  0.002101   0.005572   0.377    0.707    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1902 on 140 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.4248, Adjusted R-squared:  0.4125 
+## F-statistic: 34.47 on 3 and 140 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Statins status}
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{lm}\NormalTok{(pulse\_pressure}\SpecialCharTok{\textasciitilde{}}\NormalTok{statins}\SpecialCharTok{*}\NormalTok{age,}\AttributeTok{data =}\NormalTok{ dat.old))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = pulse_pressure ~ statins * age, data = dat.old)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.1844 -0.5430  0.1018  0.5471  2.0758 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -3.651841   0.693372  -5.267 5.12e-07 ***
+## statins      0.437187   1.291257   0.339    0.735    
+## age          0.057280   0.010814   5.297 4.46e-07 ***
+## statins:age -0.001694   0.019565  -0.087    0.931    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.8758 on 140 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.2555, Adjusted R-squared:  0.2396 
+## F-statistic: 16.02 on 3 and 140 DF,  p-value: 5.248e-09
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{lm}\NormalTok{(prefx\_std}\SpecialCharTok{\textasciitilde{}}\NormalTok{statins}\SpecialCharTok{*}\NormalTok{age,}\AttributeTok{data =}\NormalTok{ dat.old))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = prefx_std ~ statins * age, data = dat.old)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.5073 -0.4638 -0.1095  0.4420  1.9944 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  4.38247    0.57207   7.661 2.70e-12 ***
+## statins     -1.11395    1.07708  -1.034    0.303    
+## age         -0.07147    0.00890  -8.031 3.46e-13 ***
+## statins:age  0.01309    0.01630   0.803    0.423    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.7337 on 141 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.3956, Adjusted R-squared:  0.3827 
+## F-statistic: 30.76 on 3 and 141 DF,  p-value: 2.332e-15
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{lm}\NormalTok{(log\_hypo}\SpecialCharTok{\textasciitilde{}}\NormalTok{statins}\SpecialCharTok{*}\NormalTok{age,}\AttributeTok{data =}\NormalTok{ dat.old))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = log_hypo ~ statins * age, data = dat.old)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.44600 -0.11863 -0.02496  0.11789  0.57510 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  1.967542   0.149171  13.190  < 2e-16 ***
+## statins     -0.165435   0.298262  -0.555     0.58    
+## age          0.019166   0.002321   8.259 9.97e-14 ***
+## statins:age  0.002584   0.004542   0.569     0.57    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1913 on 140 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.4179, Adjusted R-squared:  0.4055 
+## F-statistic: 33.51 on 3 and 140 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\hypertarget{overall-piecewise-regression}{%
+\section{Overall piecewise
+regression}\label{overall-piecewise-regression}}
+
+Age vs PReFx
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{verbatim}
+## 
+##  ***Regression Model with Segmented Relationship(s)***
+## 
+## Call: 
+## segmented.lm(obj = fit_lm, seg.Z = ~age, npsi = 1)
+## 
+## Estimated Break-Point(s):
+##             Est. St.Err
+## psi1.age 53.092   4.05
+## 
+## Coefficients of the linear terms:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  1.286567   0.335199   3.838 0.000166 ***
+## age         -0.015398   0.008903  -1.730 0.085262 .  
+## U1.age      -0.052398   0.012166  -4.307       NA    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.7414 on 199 degrees of freedom
+## Multiple R-Squared: 0.4584,  Adjusted R-squared: 0.4503 
+## 
+## Boot restarting based on 6 samples. Last fit:
+## Convergence attained in 2 iterations (rel. change 0)
+\end{verbatim}
+
+\begin{verbatim}
+##             Est. CI(95%).low CI(95%).up
+## psi1.age 53.0922     45.1057    61.0787
+\end{verbatim}
+
+\begin{verbatim}
+## $age
+##             Est.   St.Err. t value CI(95%).l  CI(95%).u
+## slope1 -0.015398 0.0089031 -1.7295 -0.032955  0.0021582
+## slope2 -0.067796 0.0082910 -8.1771 -0.084146 -0.0514470
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Score test for one/two changes in the slope
+## 
+## data:  formula = prefx_std ~ age 
+## breakpoint for variable = age 
+## model = gaussian , link = identity , method = segmented.lm
+## observed value = -3.9632, n.points = 10, p-value = 5.152e-05
+## alternative hypothesis: less   (1 breakpoint)
+\end{verbatim}
+
+Age vs WM Hypointensity
+
+\begin{verbatim}
+## boot sample =  1  opt.dev = 6.96831  n.psi = 1  est.psi = 61.250 
+## boot sample =  2  opt.dev = 6.96783  n.psi = 1  est.psi = 61.086 
+## boot sample =  3  opt.dev = 6.96783  n.psi = 1  est.psi = 61.086 
+## boot sample =  4  opt.dev = 6.96783  n.psi = 1  est.psi = 61.086 
+## boot sample =  5  opt.dev = 6.96783  n.psi = 1  est.psi = 61.086 
+## boot sample =  6  opt.dev = 6.96783  n.psi = 1  est.psi = 61.086
+\end{verbatim}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{verbatim}
+## 
+##  ***Regression Model with Segmented Relationship(s)***
+## 
+## Call: 
+## segmented.lm(obj = fit_lm, seg.Z = ~age, npsi = 1, control = seg.control(display = TRUE))
+## 
+## Estimated Break-Point(s):
+##             Est. St.Err
+## psi1.age 61.086  1.917
+## 
+## Coefficients of the linear terms:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 2.820095   0.063082  44.705   <2e-16 ***
+## age         0.004053   0.001358   2.984   0.0032 ** 
+## U1.age      0.022735   0.003556   6.393       NA    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1876 on 198 degrees of freedom
+## Multiple R-Squared: 0.4863,  Adjusted R-squared: 0.4785 
+## 
+## Boot restarting based on 6 samples. Last fit:
+## Convergence attained in 1 iterations (rel. change -2.5804e-08)
+\end{verbatim}
+
+\begin{verbatim}
+##             Est. CI(95%).low CI(95%).up
+## psi1.age 61.0862     57.3063    64.8662
+\end{verbatim}
+
+\begin{verbatim}
+## $age
+##             Est.   St.Err. t value CI(95%).l CI(95%).u
+## slope1 0.0040529 0.0013582  2.9841 0.0013746 0.0067312
+## slope2 0.0267880 0.0032866  8.1506 0.0203070 0.0332690
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Score test for one/two changes in the slope
+## 
+## data:  formula = log_hypo ~ age 
+## breakpoint for variable = age 
+## model = gaussian , link = identity , method = segmented.lm
+## observed value = 7.3931, n.points = 10, p-value = 1.977e-12
+## alternative hypothesis: greater   (1 breakpoint)
+\end{verbatim}
+
+Age vs Fluid Ability
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{verbatim}
+## 
+##  ***Regression Model with Segmented Relationship(s)***
+## 
+## Call: 
+## segmented.lm(obj = fit_lm, seg.Z = ~age, npsi = 1)
+## 
+## Estimated Break-Point(s):
+##            Est. St.Err
+## psi1.age 55.26  5.229
+## 
+## Coefficients of the linear terms:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  1.317243   0.342792   3.843 0.000166 ***
+## age         -0.018015   0.008553  -2.106 0.036494 *  
+## U1.age      -0.040624   0.012777  -3.180       NA    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.7932 on 190 degrees of freedom
+## Multiple R-Squared: 0.3516,  Adjusted R-squared: 0.3414 
+## 
+## Boot restarting based on 6 samples. Last fit:
+## Convergence attained in 2 iterations (rel. change 9.9606e-09)
+\end{verbatim}
+
+\begin{verbatim}
+##           Est. CI(95%).low CI(95%).up
+## psi1.age 55.26     44.9459    65.5741
+\end{verbatim}
+
+\begin{verbatim}
+## $age
+##             Est.   St.Err. t value CI(95%).l  CI(95%).u
+## slope1 -0.018015 0.0085531 -2.1063 -0.034887 -0.0011439
+## slope2 -0.058639 0.0094917 -6.1780 -0.077362 -0.0399170
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Score test for one/two changes in the slope
+## 
+## data:  formula = fluid_std ~ age 
+## breakpoint for variable = age 
+## model = gaussian , link = identity , method = segmented.lm
+## observed value = -3.123, n.points = 10, p-value = 0.001035
+## alternative hypothesis: less   (1 breakpoint)
+\end{verbatim}
+
+Age vs Verbal Ability
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1    43
+\end{verbatim}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{verbatim}
+## 
+##  ***Regression Model with Segmented Relationship(s)***
+## 
+## Call: 
+## segmented.lm(obj = fit_lm, seg.Z = ~age, npsi = 1)
+## 
+## Estimated Break-Point(s):
+##             Est. St.Err
+## psi1.age 67.427  3.515
+## 
+## Coefficients of the linear terms:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -1.029273   0.285473  -3.606 0.000398 ***
+## age          0.020099   0.005418   3.710 0.000272 ***
+## U1.age      -0.070666   0.026661  -2.650       NA    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.9168 on 190 degrees of freedom
+## Multiple R-Squared: 0.0844,  Adjusted R-squared: 0.06994 
+## 
+## Boot restarting based on 6 samples. Last fit:
+## Convergence attained in 3 iterations (rel. change 1.7491e-11)
+\end{verbatim}
+
+\begin{verbatim}
+##             Est. CI(95%).low CI(95%).up
+## psi1.age 67.4275     60.4938    74.3611
+\end{verbatim}
+
+\begin{verbatim}
+## $age
+##             Est.  St.Err. t value  CI(95%).l  CI(95%).u
+## slope1  0.020099 0.005418  3.7096  0.0094116 0.03078600
+## slope2 -0.050567 0.026105 -1.9371 -0.1020600 0.00092613
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Score test for one/two changes in the slope
+## 
+## data:  formula = verbal_std ~ age 
+## breakpoint for variable = age 
+## model = gaussian , link = identity , method = segmented.lm
+## observed value = -2.7043, n.points = 10, p-value = 0.003733
+## alternative hypothesis: less   (1 breakpoint)
+\end{verbatim}
+
+Multiple comparisons correction of piecewise estimates via
+Holm-Bonferroni (4)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{scipen =} \DecValTok{100}\NormalTok{, }\AttributeTok{digits =} \DecValTok{4}\NormalTok{) }\CommentTok{\# stop use of scientific notation }
+\NormalTok{p.vec.seg }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(prefx.p}\SpecialCharTok{$}\NormalTok{p.value, wmh.p}\SpecialCharTok{$}\NormalTok{p.value, fluid.p}\SpecialCharTok{$}\NormalTok{p.value, verbal.p}\SpecialCharTok{$}\NormalTok{p.value)}
+
+\NormalTok{p.holm.seg }\OtherTok{\textless{}{-}} \FunctionTok{p.adjust}\NormalTok{(}\AttributeTok{p =}\NormalTok{ p.vec.seg, }\AttributeTok{method =} \StringTok{"holm"}\NormalTok{)}
+
+\NormalTok{p.holm.seg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.000154562183362 0.000000000007907 0.002070202404403 0.003732820464014
+\end{verbatim}
+
+Test whether there is a difference between pre and post-breakpoints
+means for PReFx, pulse pressure, white matter hypointensities, and
+cognition based on breakpoints estimated via piecewise regression
+analyses. This analysis was requested by reviewers
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pulse.lo }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(dat\_all, age }\SpecialCharTok{\textless{}} \FloatTok{51.29}\NormalTok{)}
+\NormalTok{pulse.hi }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(dat\_all, age }\SpecialCharTok{\textgreater{}} \FloatTok{51.29}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ pulse.hi}\SpecialCharTok{$}\NormalTok{pulse\_pressure, }\AttributeTok{y =}\NormalTok{ pulse.lo}\SpecialCharTok{$}\NormalTok{pulse\_pressure, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  pulse.hi$pulse_pressure and pulse.lo$pulse_pressure
+## t = 3, df = 112, p-value = 0.003
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.1561 0.7524
+## sample estimates:
+## mean of x mean of y 
+##    0.1349   -0.3193
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prefx.lo }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(dat\_all, age }\SpecialCharTok{\textless{}} \FloatTok{53.09}\NormalTok{)}
+\NormalTok{prefx.hi }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(dat\_all, age }\SpecialCharTok{\textgreater{}} \FloatTok{53.09}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ prefx.hi}\SpecialCharTok{$}\NormalTok{prefx\_std, }\AttributeTok{y =}\NormalTok{ prefx.lo}\SpecialCharTok{$}\NormalTok{prefx\_std, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  prefx.hi$prefx_std and prefx.lo$prefx_std
+## t = -9.1, df = 159, p-value = 0.0000000000000003
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1.3314 -0.8582
+## sample estimates:
+## mean of x mean of y 
+##   -0.3667    0.7281
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wmsa.lo }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(dat\_all, age }\SpecialCharTok{\textless{}} \FloatTok{61.09}\NormalTok{)}
+\NormalTok{wmsa.hi }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(dat\_all, age }\SpecialCharTok{\textgreater{}} \FloatTok{61.09}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ wmsa.hi}\SpecialCharTok{$}\NormalTok{log\_hypo, }\AttributeTok{y =}\NormalTok{ wmsa.lo}\SpecialCharTok{$}\NormalTok{log\_hypo, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  wmsa.hi$log_hypo and wmsa.lo$log_hypo
+## t = 9, df = 165, p-value = 0.0000000000000006
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.2222 0.3477
+## sample estimates:
+## mean of x mean of y 
+##     3.285     3.000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fluid.lo }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(dat\_all, age }\SpecialCharTok{\textless{}} \FloatTok{55.26}\NormalTok{)}
+\NormalTok{fluid.hi }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(dat\_all, age }\SpecialCharTok{\textgreater{}} \FloatTok{55.26}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ fluid.hi}\SpecialCharTok{$}\NormalTok{fluid\_std, }\AttributeTok{y =}\NormalTok{ fluid.lo}\SpecialCharTok{$}\NormalTok{fluid\_std, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  fluid.hi$fluid_std and fluid.lo$fluid_std
+## t = -7.4, df = 154, p-value = 0.000000000008
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1.1834 -0.6849
+## sample estimates:
+## mean of x mean of y 
+##   -0.3122    0.6220
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{verbal.lo }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(dat\_all, age }\SpecialCharTok{\textless{}} \FloatTok{67.40}\NormalTok{)}
+\NormalTok{verbal.hi }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(dat\_all, age }\SpecialCharTok{\textgreater{}} \FloatTok{67.40}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(}\AttributeTok{x =}\NormalTok{ verbal.hi}\SpecialCharTok{$}\NormalTok{verbal\_std, }\AttributeTok{y =}\NormalTok{ verbal.lo}\SpecialCharTok{$}\NormalTok{verbal\_std, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  verbal.hi$verbal_std and verbal.lo$verbal_std
+## t = 0.067, df = 72, p-value = 0.9
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.3168  0.3387
+## sample estimates:
+## mean of x mean of y 
+##  -0.00762  -0.01858
+\end{verbatim}
+
+\hypertarget{piecewise-regression-plots}{%
+\subsubsection{Piecewise regression
+plots}\label{piecewise-regression-plots}}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\hypertarget{piecewise-regression-by-sex}{%
+\subsection{Piecewise regression by
+sex}\label{piecewise-regression-by-sex}}
+
+PReFx by sex
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Males }\AlertTok{\#\#\#}
+\NormalTok{fit\_lm1 }\OtherTok{=} \FunctionTok{lm}\NormalTok{(prefx\_std }\SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{data =}\NormalTok{ dat\_m) }\CommentTok{\#fit linear model}
+\NormalTok{fit\_segmented1 }\OtherTok{=} \FunctionTok{segmented}\NormalTok{(fit\_lm1, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{npsi =} \DecValTok{1}\NormalTok{)   }\CommentTok{\# specify \# of breakpoints to estimate}
+\FunctionTok{plot}\NormalTok{(fit\_segmented1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit\_segmented1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  ***Regression Model with Segmented Relationship(s)***
+## 
+## Call: 
+## segmented.lm(obj = fit_lm1, seg.Z = ~age, npsi = 1)
+## 
+## Estimated Break-Point(s):
+##            Est. St.Err
+## psi1.age 26.44  4.599
+## 
+## Coefficients of the linear terms:
+##             Estimate Std. Error t value Pr(>|t|)
+## (Intercept)  -0.5057     2.5575   -0.20     0.84
+## age           0.0639     0.1110    0.58     0.57
+## U1.age       -0.1103     0.1110   -0.99       NA
+## 
+## Residual standard error: 0.632 on 82 degrees of freedom
+## Multiple R-Squared: 0.603,  Adjusted R-squared: 0.588 
+## 
+## Boot restarting based on 7 samples. Last fit:
+## Convergence attained in 2 iterations (rel. change 0.00000000000000086464)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint.segmented}\NormalTok{(fit\_segmented1, }\AttributeTok{level =}\NormalTok{ .}\DecValTok{95}\NormalTok{) }\CommentTok{\# 95\% CI of estimate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Est. CI(95%).low CI(95%).up
+## psi1.age 26.44       17.29      35.59
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{slope}\NormalTok{(fit\_segmented1) }\CommentTok{\# see slopes of two fitted lines}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $age
+##            Est.  St.Err.  t value CI(95%).l CI(95%).u
+## slope1  0.06386 0.111000   0.5755  -0.15690   0.28460
+## slope2 -0.04646 0.004496 -10.3300  -0.05541  -0.03752
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(prefx.seg.m }\OtherTok{\textless{}{-}} \FunctionTok{pscore.test}\NormalTok{(fit\_segmented1, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{k =} \DecValTok{10}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{)) }\CommentTok{\# test for difference in slopes, one{-}sided test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Score test for one/two changes in the slope
+## 
+## data:  formula = prefx_std ~ age 
+## breakpoint for variable = age 
+## model = gaussian , link = identity , method = segmented.lm
+## observed value = -1.3, n.points = 10, p-value = 0.09
+## alternative hypothesis: less   (1 breakpoint)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Females }\AlertTok{\#\#\#}
+\NormalTok{fit\_lm2 }\OtherTok{=} \FunctionTok{lm}\NormalTok{(prefx\_std }\SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{data =}\NormalTok{ dat\_f) }\CommentTok{\#fit linear model}
+\NormalTok{fit\_segmented2 }\OtherTok{=} \FunctionTok{segmented}\NormalTok{(fit\_lm2, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{npsi =} \DecValTok{1}\NormalTok{)   }\CommentTok{\# specify \# of breakpoints to estimate}
+\FunctionTok{plot}\NormalTok{(fit\_segmented2)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-15-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit\_segmented2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  ***Regression Model with Segmented Relationship(s)***
+## 
+## Call: 
+## segmented.lm(obj = fit_lm2, seg.Z = ~age, npsi = 1)
+## 
+## Estimated Break-Point(s):
+##            Est. St.Err
+## psi1.age 53.29  4.542
+## 
+## Coefficients of the linear terms:
+##             Estimate Std. Error t value Pr(>|t|)  
+## (Intercept)  1.02495    0.46605    2.20     0.03 *
+## age         -0.00771    0.01195   -0.65     0.52  
+## U1.age      -0.06044    0.01621   -3.73       NA  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.79 on 113 degrees of freedom
+## Multiple R-Squared: 0.384,  Adjusted R-squared: 0.368 
+## 
+## Boot restarting based on 10 samples. Last fit:
+## Convergence attained in 1 iterations (rel. change 0.000000050091)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint.segmented}\NormalTok{(fit\_segmented2, }\AttributeTok{level =}\NormalTok{ .}\DecValTok{95}\NormalTok{) }\CommentTok{\# 95\% CI of estimate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Est. CI(95%).low CI(95%).up
+## psi1.age 53.29       44.29      62.29
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{slope}\NormalTok{(fit\_segmented2) }\CommentTok{\# see slopes of two fitted lines}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $age
+##             Est. St.Err. t value CI(95%).l CI(95%).u
+## slope1 -0.007709 0.01195 -0.6453  -0.03138   0.01596
+## slope2 -0.068150 0.01096 -6.2170  -0.08986  -0.04643
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(prefx.seg.f }\OtherTok{\textless{}{-}}\FunctionTok{pscore.test}\NormalTok{(fit\_segmented2, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{k =} \DecValTok{10}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{)) }\CommentTok{\# test for difference in slopes, one{-}sided test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Score test for one/two changes in the slope
+## 
+## data:  formula = prefx_std ~ age 
+## breakpoint for variable = age 
+## model = gaussian , link = identity , method = segmented.lm
+## observed value = -3.6, n.points = 10, p-value = 0.0003
+## alternative hypothesis: less   (1 breakpoint)
+\end{verbatim}
+
+WMH by sex
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Males }\AlertTok{\#\#\#}
+\NormalTok{fit\_lm7 }\OtherTok{=} \FunctionTok{lm}\NormalTok{(log\_hypo }\SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{data =}\NormalTok{ dat\_m) }\CommentTok{\#fit linear model}
+\NormalTok{fit\_segmented7 }\OtherTok{=} \FunctionTok{segmented}\NormalTok{(fit\_lm7, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{npsi =} \DecValTok{1}\NormalTok{)   }\CommentTok{\# specify \# of breakpoints to search for}
+\FunctionTok{plot}\NormalTok{(fit\_segmented7)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit\_segmented7)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  ***Regression Model with Segmented Relationship(s)***
+## 
+## Call: 
+## segmented.lm(obj = fit_lm7, seg.Z = ~age, npsi = 1)
+## 
+## Estimated Break-Point(s):
+##            Est. St.Err
+## psi1.age 66.26  3.249
+## 
+## Coefficients of the linear terms:
+##             Estimate Std. Error t value             Pr(>|t|)    
+## (Intercept)  2.61522    0.09220   28.36 < 0.0000000000000002 ***
+## age          0.00838    0.00188    4.45             0.000026 ***
+## U1.age       0.02405    0.00865    2.78                   NA    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.209 on 82 degrees of freedom
+## Multiple R-Squared: 0.523,  Adjusted R-squared: 0.506 
+## 
+## Boot restarting based on 6 samples. Last fit:
+## Convergence attained in 5 iterations (rel. change 0.000000000000031579)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint.segmented}\NormalTok{(fit\_segmented7, }\AttributeTok{level =}\NormalTok{ .}\DecValTok{95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Est. CI(95%).low CI(95%).up
+## psi1.age 66.26        59.8      72.72
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{slope}\NormalTok{(fit\_segmented7)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $age
+##            Est.  St.Err. t value CI(95%).l CI(95%).u
+## slope1 0.008379 0.001881   4.454  0.004637   0.01212
+## slope2 0.032430 0.008444   3.841  0.015630   0.04923
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pscore.test}\NormalTok{(fit\_lm7, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{k =} \DecValTok{10}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{) }\CommentTok{\# test for difference in slopes, one{-}sided test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Score test for one/two changes in the slope
+## 
+## data:  formula = log_hypo ~ age 
+## breakpoint for variable = age 
+## model = gaussian , link = identity , method = lm
+## observed value = 3.3, n.points = 10, p-value = 0.0006
+## alternative hypothesis: greater   (1 breakpoint)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wmh.seg.m }\OtherTok{\textless{}{-}} \FunctionTok{pscore.test}\NormalTok{(fit\_segmented7, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{k =} \DecValTok{10}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+
+\DocumentationTok{\#\#\# Females }\AlertTok{\#\#\#}
+\NormalTok{fit\_lm8 }\OtherTok{=} \FunctionTok{lm}\NormalTok{(log\_hypo }\SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{data =}\NormalTok{ dat\_f) }\CommentTok{\#fit linear model}
+\NormalTok{fit\_segmented8 }\OtherTok{=} \FunctionTok{segmented}\NormalTok{(fit\_lm8, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{npsi =} \DecValTok{1}\NormalTok{)   }\CommentTok{\# specify \# of breakpoints to search for}
+\FunctionTok{plot}\NormalTok{(fit\_segmented8)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-16-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit\_segmented8)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  ***Regression Model with Segmented Relationship(s)***
+## 
+## Call: 
+## segmented.lm(obj = fit_lm8, seg.Z = ~age, npsi = 1)
+## 
+## Estimated Break-Point(s):
+##            Est. St.Err
+## psi1.age 60.21   1.88
+## 
+## Coefficients of the linear terms:
+##             Estimate Std. Error t value            Pr(>|t|)    
+## (Intercept) 2.983681   0.077061   38.72 <0.0000000000000002 ***
+## age         0.000924   0.001624    0.57                0.57    
+## U1.age      0.025699   0.003936    6.53                  NA    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.165 on 112 degrees of freedom
+## Multiple R-Squared: 0.493,  Adjusted R-squared: 0.48 
+## 
+## Boot restarting based on 6 samples. Last fit:
+## Convergence attained in 1 iterations (rel. change 0.00000010934)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint.segmented}\NormalTok{(fit\_segmented8, }\AttributeTok{level =}\NormalTok{ .}\DecValTok{95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Est. CI(95%).low CI(95%).up
+## psi1.age 60.21       56.48      63.93
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{slope}\NormalTok{(fit\_segmented8)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $age
+##             Est.  St.Err. t value CI(95%).l CI(95%).u
+## slope1 0.0009237 0.001624  0.5688 -0.002294  0.004141
+## slope2 0.0266200 0.003586  7.4240  0.019520  0.033730
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(wmh.seg.f }\OtherTok{\textless{}{-}} \FunctionTok{pscore.test}\NormalTok{(fit\_segmented8, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{k =} \DecValTok{10}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Score test for one/two changes in the slope
+## 
+## data:  formula = log_hypo ~ age 
+## breakpoint for variable = age 
+## model = gaussian , link = identity , method = segmented.lm
+## observed value = 7.2, n.points = 10, p-value = 0.00000000003
+## alternative hypothesis: greater   (1 breakpoint)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{davies.test}\NormalTok{(fit\_lm8, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{k =} \DecValTok{10}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\CommentTok{\# test for difference in slopes, one{-}sided test}
+\end{Highlighting}
+\end{Shaded}
+
+Fluid ability by sex
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Males }\AlertTok{\#\#\#}
+\NormalTok{fit\_lm9 }\OtherTok{=} \FunctionTok{lm}\NormalTok{(fluid\_std }\SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{data =}\NormalTok{ dat\_m) }\CommentTok{\#fit linear model}
+\NormalTok{fit\_segmented9 }\OtherTok{=} \FunctionTok{segmented}\NormalTok{(fit\_lm9, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{npsi =} \DecValTok{1}\NormalTok{)   }\CommentTok{\# specify \# of breakpoints to search for}
+\FunctionTok{plot}\NormalTok{(fit\_segmented9)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit\_segmented9)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  ***Regression Model with Segmented Relationship(s)***
+## 
+## Call: 
+## segmented.lm(obj = fit_lm9, seg.Z = ~age, npsi = 1)
+## 
+## Estimated Break-Point(s):
+##           Est. St.Err
+## psi1.age 26.2  4.824
+## 
+## Coefficients of the linear terms:
+##             Estimate Std. Error t value Pr(>|t|)
+## (Intercept)  -1.1760     3.4948   -0.34     0.74
+## age           0.0972     0.1516    0.64     0.52
+## U1.age       -0.1401     0.1518   -0.92       NA
+## 
+## Residual standard error: 0.864 on 76 degrees of freedom
+## Multiple R-Squared: 0.385,  Adjusted R-squared: 0.361 
+## 
+## Boot restarting based on 6 samples. Last fit:
+## Convergence attained in 2 iterations (rel. change 0.0000000021976)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint.segmented}\NormalTok{(fit\_segmented9, }\AttributeTok{level =}\NormalTok{ .}\DecValTok{95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          Est. CI(95%).low CI(95%).up
+## psi1.age 26.2       16.59      35.81
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{slope}\NormalTok{(fit\_segmented9)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $age
+##            Est.  St.Err. t value CI(95%).l CI(95%).u
+## slope1  0.09719 0.151600   0.641  -0.20480    0.3991
+## slope2 -0.04293 0.006797  -6.317  -0.05647   -0.0294
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pscore.test}\NormalTok{(fit\_lm9, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{k =} \DecValTok{10}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{) }\CommentTok{\# test for difference in slopes, one{-}sided test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Score test for one/two changes in the slope
+## 
+## data:  formula = fluid_std ~ age 
+## breakpoint for variable = age 
+## model = gaussian , link = identity , method = lm
+## observed value = -0.47, n.points = 10, p-value = 0.3
+## alternative hypothesis: less   (1 breakpoint)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fluid.seg.m }\OtherTok{\textless{}{-}} \FunctionTok{pscore.test}\NormalTok{(fit\_segmented9, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{k =} \DecValTok{10}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+
+\DocumentationTok{\#\#\# Females }\AlertTok{\#\#\#}
+\NormalTok{fit\_lm10 }\OtherTok{=} \FunctionTok{lm}\NormalTok{(fluid\_std }\SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{data =}\NormalTok{ dat\_f) }\CommentTok{\#fit linear model}
+\NormalTok{fit\_segmented10 }\OtherTok{=} \FunctionTok{segmented}\NormalTok{(fit\_lm10, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{npsi =} \DecValTok{1}\NormalTok{)   }\CommentTok{\# specify \# of breakpoints to search for}
+\FunctionTok{plot}\NormalTok{(fit\_segmented10)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-17-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit\_segmented10)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  ***Regression Model with Segmented Relationship(s)***
+## 
+## Call: 
+## segmented.lm(obj = fit_lm10, seg.Z = ~age, npsi = 1)
+## 
+## Estimated Break-Point(s):
+##            Est. St.Err
+## psi1.age 58.28  3.502
+## 
+## Coefficients of the linear terms:
+##             Estimate Std. Error t value Pr(>|t|)  
+## (Intercept)   0.8687     0.3633    2.39    0.019 *
+## age          -0.0103     0.0079   -1.31    0.194  
+## U1.age       -0.0603     0.0152   -3.96       NA  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.728 on 110 degrees of freedom
+## Multiple R-Squared: 0.367,  Adjusted R-squared: 0.35 
+## 
+## Boot restarting based on 10 samples. Last fit:
+## Convergence attained in 1 iterations (rel. change 0.00000014973)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint.segmented}\NormalTok{(fit\_segmented10, }\AttributeTok{level =}\NormalTok{ .}\DecValTok{95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Est. CI(95%).low CI(95%).up
+## psi1.age 58.28       51.34      65.22
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{slope}\NormalTok{(fit\_segmented10)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $age
+##            Est.  St.Err. t value CI(95%).l CI(95%).u
+## slope1 -0.01033 0.007903  -1.307  -0.02599  0.005332
+## slope2 -0.07063 0.013020  -5.424  -0.09644 -0.044820
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(fluid.seg.f }\OtherTok{\textless{}{-}} \FunctionTok{pscore.test}\NormalTok{(fit\_segmented10, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{k =} \DecValTok{10}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Score test for one/two changes in the slope
+## 
+## data:  formula = fluid_std ~ age 
+## breakpoint for variable = age 
+## model = gaussian , link = identity , method = segmented.lm
+## observed value = -3.9, n.points = 10, p-value = 0.00008
+## alternative hypothesis: less   (1 breakpoint)
+\end{verbatim}
+
+Verbal ability by sex
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\# Males }\AlertTok{\#\#\#}
+\NormalTok{fit\_lm11 }\OtherTok{=} \FunctionTok{lm}\NormalTok{(verbal\_std }\SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{data =}\NormalTok{ dat\_m) }\CommentTok{\#fit linear model}
+\NormalTok{fit\_segmented11 }\OtherTok{=} \FunctionTok{segmented}\NormalTok{(fit\_lm11, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{npsi =} \DecValTok{1}\NormalTok{)   }\CommentTok{\# specify \# of breakpoints to search for}
+\FunctionTok{plot}\NormalTok{(fit\_segmented11)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit\_segmented11)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  ***Regression Model with Segmented Relationship(s)***
+## 
+## Call: 
+## segmented.lm(obj = fit_lm11, seg.Z = ~age, npsi = 1)
+## 
+## Estimated Break-Point(s):
+##            Est. St.Err
+## psi1.age 69.77  6.185
+## 
+## Coefficients of the linear terms:
+##             Estimate Std. Error t value Pr(>|t|)   
+## (Intercept) -0.97786    0.38366   -2.55    0.013 * 
+## age          0.01930    0.00709    2.72    0.008 **
+## U1.age      -0.07597    0.06483   -1.17       NA   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.877 on 77 degrees of freedom
+## Multiple R-Squared: 0.0962,  Adjusted R-squared: 0.0609 
+## 
+## Boot restarting based on 10 samples. Last fit:
+## Convergence attained in 2 iterations (rel. change 0.000000055367)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint.segmented}\NormalTok{(fit\_segmented11, }\AttributeTok{level =}\NormalTok{ .}\DecValTok{95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Est. CI(95%).low CI(95%).up
+## psi1.age 69.77       57.46      82.09
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{slope}\NormalTok{(fit\_segmented11)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $age
+##            Est.  St.Err. t value CI(95%).l CI(95%).u
+## slope1  0.01930 0.007086  2.7230  0.005186   0.03341
+## slope2 -0.05667 0.064440 -0.8795 -0.185000   0.07164
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pscore.test}\NormalTok{(fit\_lm11, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{k =} \DecValTok{10}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{) }\CommentTok{\# test for difference in slopes, one{-}sided test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Score test for one/two changes in the slope
+## 
+## data:  formula = verbal_std ~ age 
+## breakpoint for variable = age 
+## model = gaussian , link = identity , method = lm
+## observed value = -1.3, n.points = 10, p-value = 0.1
+## alternative hypothesis: less   (1 breakpoint)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{verbal.seg.m }\OtherTok{\textless{}{-}} \FunctionTok{pscore.test}\NormalTok{(fit\_segmented11, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{k =} \DecValTok{10}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{)}
+
+\DocumentationTok{\#\#\# Females }\AlertTok{\#\#\#}
+\NormalTok{fit\_lm12 }\OtherTok{=} \FunctionTok{lm}\NormalTok{(verbal\_std }\SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{data =}\NormalTok{ dat\_f) }\CommentTok{\#fit linear model}
+\NormalTok{fit\_segmented12 }\OtherTok{=} \FunctionTok{segmented}\NormalTok{(fit\_lm12, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{npsi =} \DecValTok{1}\NormalTok{)   }\CommentTok{\# specify \# of breakpoints to search for}
+\FunctionTok{plot}\NormalTok{(fit\_segmented12)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-18-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit\_segmented12)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  ***Regression Model with Segmented Relationship(s)***
+## 
+## Call: 
+## segmented.lm(obj = fit_lm12, seg.Z = ~age, npsi = 1)
+## 
+## Estimated Break-Point(s):
+##           Est. St.Err
+## psi1.age 65.5  4.769
+## 
+## Coefficients of the linear terms:
+##             Estimate Std. Error t value Pr(>|t|)   
+## (Intercept) -1.08206    0.41440   -2.61   0.0103 * 
+## age          0.02101    0.00791    2.66   0.0091 **
+## U1.age      -0.06922    0.03030   -2.28       NA   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.956 on 109 degrees of freedom
+## Multiple R-Squared: 0.083,  Adjusted R-squared: 0.0578 
+## 
+## Boot restarting based on 9 samples. Last fit:
+## Convergence attained in 4 iterations (rel. change 0.00000017447)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint.segmented}\NormalTok{(fit\_segmented12, }\AttributeTok{level =}\NormalTok{ .}\DecValTok{95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          Est. CI(95%).low CI(95%).up
+## psi1.age 65.5       56.04      74.95
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{slope}\NormalTok{(fit\_segmented12)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $age
+##            Est. St.Err. t value CI(95%).l CI(95%).u
+## slope1  0.02101 0.00791   2.656   0.00533   0.03668
+## slope2 -0.04822 0.02925  -1.649  -0.10620   0.00975
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(verbal.seg.f }\OtherTok{\textless{}{-}} \FunctionTok{pscore.test}\NormalTok{(fit\_segmented12, }\AttributeTok{seg.Z =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ age, }\AttributeTok{k =} \DecValTok{10}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Score test for one/two changes in the slope
+## 
+## data:  formula = verbal_std ~ age 
+## breakpoint for variable = age 
+## model = gaussian , link = identity , method = segmented.lm
+## observed value = -2.4, n.points = 10, p-value = 0.01
+## alternative hypothesis: less   (1 breakpoint)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# test for difference in slopes, one{-}sided test}
+\end{Highlighting}
+\end{Shaded}
+
+Multiple comparisons correction of all sex piecewise estimates (8)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{scipen =} \DecValTok{999}\NormalTok{) }\CommentTok{\# stop use of scientific notation}
+\NormalTok{p.vec.seg }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(prefx.seg.m}\SpecialCharTok{$}\NormalTok{p.value, prefx.seg.f}\SpecialCharTok{$}\NormalTok{p.value, wmh.seg.m}\SpecialCharTok{$}\NormalTok{p.value, wmh.seg.f}\SpecialCharTok{$}\NormalTok{p.value, fluid.seg.m}\SpecialCharTok{$}\NormalTok{p.value, fluid.seg.f}\SpecialCharTok{$}\NormalTok{p.value, verbal.seg.m}\SpecialCharTok{$}\NormalTok{p.value, verbal.seg.f}\SpecialCharTok{$}\NormalTok{p.value)}
+
+\NormalTok{p.holm.seg }\OtherTok{\textless{}{-}} \FunctionTok{p.adjust}\NormalTok{(}\AttributeTok{p =}\NormalTok{ p.vec.seg, }\AttributeTok{method =} \StringTok{"holm"}\NormalTok{)}
+
+\NormalTok{p.holm.seg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2718285981252 0.0015330145885 0.0018372456746 0.0000000002652
+## [5] 0.6789623780886 0.0005689147772 0.2718285981252 0.0389429109099
+\end{verbatim}
+
+\hypertarget{piecewise-plots-by-sex}{%
+\subsection{Piecewise plots by sex}\label{piecewise-plots-by-sex}}
+
+PReFx by sex
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat\_m }\OtherTok{\textless{}{-}}\NormalTok{ dat\_all }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Gender }\SpecialCharTok{==} \StringTok{"M"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(age, prefx\_std, Gender) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{()}
+\NormalTok{dat\_f }\OtherTok{\textless{}{-}}\NormalTok{ dat\_all }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{filter}\NormalTok{(Gender }\SpecialCharTok{==} \StringTok{"F"}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(age, prefx\_std, Gender) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{()}
+
+
+\NormalTok{(sex\_prefx }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =} \ConstantTok{NULL}\NormalTok{,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\DecValTok{53}\NormalTok{, }\AttributeTok{y =}\NormalTok{ .}\DecValTok{65}\NormalTok{), }\AttributeTok{size =}\DecValTok{5}\NormalTok{, }\AttributeTok{shape=}\DecValTok{21}\NormalTok{, }\AttributeTok{fill=}\StringTok{"black"}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{)  }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_m, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =}\NormalTok{ prefx\_std), }\AttributeTok{colour =} \StringTok{"blue"}\NormalTok{,}\AttributeTok{size =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_f, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =}\NormalTok{ prefx\_std), }\AttributeTok{colour =} \StringTok{"red"}\NormalTok{,}\AttributeTok{size =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{)  }\SpecialCharTok{+}
+ \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_m, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented1)}\SpecialCharTok{$}\NormalTok{fit), }\AttributeTok{linewidth =} \DecValTok{2}\NormalTok{, }\AttributeTok{colour=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{65}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_f, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented2)}\SpecialCharTok{$}\NormalTok{fit), }\AttributeTok{linewidth =} \DecValTok{2}\NormalTok{, }\AttributeTok{colour=}\StringTok{"red"}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{65}\NormalTok{)  }\SpecialCharTok{+} \FunctionTok{geom\_ribbon}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{15}\NormalTok{, }\AttributeTok{fill =} \StringTok{"red"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ dat\_f, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented2)}\SpecialCharTok{$}\NormalTok{fit, }\AttributeTok{ymin =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented2)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{{-}} \FunctionTok{broken.line}\NormalTok{(fit\_segmented2, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{), }\AttributeTok{ymax =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented2)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{+} \FunctionTok{broken.line}\NormalTok{(fit\_segmented2, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{))) }\SpecialCharTok{+} \FunctionTok{geom\_ribbon}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{15}\NormalTok{, }\AttributeTok{fill =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ dat\_m, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented1)}\SpecialCharTok{$}\NormalTok{fit, }\AttributeTok{ymin =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented1)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{{-}} \FunctionTok{broken.line}\NormalTok{(fit\_segmented1, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{), }\AttributeTok{ymax =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented1)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{+} \FunctionTok{broken.line}\NormalTok{(fit\_segmented1, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{))) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"**Age vs Pulse Relaxation Function (PReFx)**  }
+\StringTok{    \textless{}span style=\textquotesingle{}color:red; font{-}size:11pt\textquotesingle{}\textgreater{}**Females = Red**\textless{}/span\textgreater{},}
+\StringTok{    \textless{}span style=\textquotesingle{}color:blue; font{-}size:11pt\textquotesingle{}\textgreater{}**Males = Blue**\textless{}/span\textgreater{}"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Age (years)"}\NormalTok{, }\AttributeTok{y =} \StringTok{"PReFx (z{-}score)"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{plot.title =} \FunctionTok{element\_markdown}\NormalTok{(}\AttributeTok{lineheight =} \FloatTok{1.1}\NormalTok{, }\AttributeTok{size =} \DecValTok{16}\NormalTok{),}
+    \AttributeTok{legend.text =} \FunctionTok{element\_markdown}\NormalTok{(}\AttributeTok{size =} \DecValTok{11}\NormalTok{),}
+    \AttributeTok{plot.caption =} \FunctionTok{element\_markdown}\NormalTok{(}\AttributeTok{size =} \DecValTok{9}\NormalTok{, }\AttributeTok{hjust =}\NormalTok{ .}\DecValTok{5}\NormalTok{),}
+    \AttributeTok{axis.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{12}\NormalTok{),}
+\NormalTok{  )}\SpecialCharTok{+} \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{44}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dotted"}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{size=}\DecValTok{1}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{62}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dotted"}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{size=}\DecValTok{1}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggsave}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"figures"}\NormalTok{, }\StringTok{"age\_prefx\_sex.png"}\NormalTok{), sex\_prefx, }\AttributeTok{width =} \FloatTok{6.5}\NormalTok{, }\AttributeTok{height =} \DecValTok{4}\NormalTok{, }\AttributeTok{units=} \StringTok{"in"}\NormalTok{, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+WMH by sex
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat\_m }\OtherTok{\textless{}{-}}\NormalTok{ dat\_all }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Gender }\SpecialCharTok{==} \StringTok{"M"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(age, log\_hypo, Gender) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{()}
+\NormalTok{dat\_f }\OtherTok{\textless{}{-}}\NormalTok{ dat\_all }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{filter}\NormalTok{(Gender }\SpecialCharTok{==} \StringTok{"F"}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(age, log\_hypo, Gender) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{()}
+
+
+\NormalTok{(sex\_wmh }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =} \ConstantTok{NULL}\NormalTok{,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\FloatTok{60.21}\NormalTok{, }\AttributeTok{y =} \FloatTok{3.05}\NormalTok{), }\AttributeTok{size =}\DecValTok{5}\NormalTok{, }\AttributeTok{shape=}\DecValTok{21}\NormalTok{, }\AttributeTok{fill=}\StringTok{"black"}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =} \ConstantTok{NULL}\NormalTok{,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\FloatTok{66.25}\NormalTok{, }\AttributeTok{y =} \FloatTok{3.18}\NormalTok{), }\AttributeTok{size =}\DecValTok{5}\NormalTok{, }\AttributeTok{shape=}\DecValTok{21}\NormalTok{, }\AttributeTok{fill=}\StringTok{"black"}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_m, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =}\NormalTok{ log\_hypo), }\AttributeTok{colour =} \StringTok{"blue"}\NormalTok{,}\AttributeTok{size =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_f, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =}\NormalTok{ log\_hypo), }\AttributeTok{colour =} \StringTok{"red"}\NormalTok{,}\AttributeTok{size =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{)  }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_m, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented7)}\SpecialCharTok{$}\NormalTok{fit), }\AttributeTok{linewidth =} \DecValTok{2}\NormalTok{, }\AttributeTok{colour=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{65}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_f, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented8)}\SpecialCharTok{$}\NormalTok{fit), }\AttributeTok{linewidth =} \DecValTok{2}\NormalTok{, }\AttributeTok{colour=}\StringTok{"red"}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{65}\NormalTok{)  }\SpecialCharTok{+} \FunctionTok{geom\_ribbon}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{15}\NormalTok{, }\AttributeTok{fill =} \StringTok{"red"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ dat\_f, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented8)}\SpecialCharTok{$}\NormalTok{fit, }\AttributeTok{ymin =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented8)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{{-}} \FunctionTok{broken.line}\NormalTok{(fit\_segmented8, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{), }\AttributeTok{ymax =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented8)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{+} \FunctionTok{broken.line}\NormalTok{(fit\_segmented8, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{))) }\SpecialCharTok{+} \FunctionTok{geom\_ribbon}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{15}\NormalTok{, }\AttributeTok{fill =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ dat\_m, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented7)}\SpecialCharTok{$}\NormalTok{fit, }\AttributeTok{ymin =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented7)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{{-}} \FunctionTok{broken.line}\NormalTok{(fit\_segmented7, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{), }\AttributeTok{ymax =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented7)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{+} \FunctionTok{broken.line}\NormalTok{(fit\_segmented7, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{))) }\SpecialCharTok{+} 
+    \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"**Age vs White Matter Lesion Volume**  }
+\StringTok{    \textless{}span style=\textquotesingle{}color:red; font{-}size:11pt\textquotesingle{}\textgreater{}**Females = Red**\textless{}/span\textgreater{},}
+\StringTok{    \textless{}span style=\textquotesingle{}color:blue; font{-}size:11pt\textquotesingle{}\textgreater{}**Males = Blue**\textless{}/span\textgreater{}"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Age (years)"}\NormalTok{, }\AttributeTok{y =} \StringTok{"log(WMSA Volume in mm³)"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{plot.title =} \FunctionTok{element\_markdown}\NormalTok{(}\AttributeTok{lineheight =} \FloatTok{1.1}\NormalTok{, }\AttributeTok{size =} \DecValTok{16}\NormalTok{),}
+    \AttributeTok{legend.text =} \FunctionTok{element\_markdown}\NormalTok{(}\AttributeTok{size =} \DecValTok{11}\NormalTok{),}
+    \AttributeTok{plot.caption =} \FunctionTok{element\_markdown}\NormalTok{(}\AttributeTok{size =} \DecValTok{9}\NormalTok{, }\AttributeTok{hjust=}\NormalTok{ .}\DecValTok{5}\NormalTok{),}
+    \AttributeTok{axis.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{12}\NormalTok{)}
+\NormalTok{  )}\SpecialCharTok{+} \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{56}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dotted"}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{size=}\DecValTok{1}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{64}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dotted"}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{size=}\DecValTok{1}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{60}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dotted"}\NormalTok{, }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{size=}\DecValTok{1}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{73}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dotted"}\NormalTok{, }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{size=}\DecValTok{1}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggsave}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"figures"}\NormalTok{, }\StringTok{"age\_wmh\_sex.png"}\NormalTok{), sex\_wmh, }\AttributeTok{width =} \FloatTok{6.5}\NormalTok{, }\AttributeTok{height =} \DecValTok{4}\NormalTok{, }\AttributeTok{units=} \StringTok{"in"}\NormalTok{, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Fluid ability by sex
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat\_m }\OtherTok{\textless{}{-}}\NormalTok{ dat\_all }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Gender }\SpecialCharTok{==} \StringTok{"M"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(age, fluid\_std, Gender) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{()}
+\NormalTok{dat\_f }\OtherTok{\textless{}{-}}\NormalTok{ dat\_all }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{filter}\NormalTok{(Gender }\SpecialCharTok{==} \StringTok{"F"}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(age, fluid\_std, Gender) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{()}
+
+
+\NormalTok{(sex\_fluid }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =} \ConstantTok{NULL}\NormalTok{,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\FloatTok{57.76}\NormalTok{, }\AttributeTok{y =}\NormalTok{ .}\DecValTok{30}\NormalTok{), }\AttributeTok{size =}\DecValTok{5}\NormalTok{, }\AttributeTok{shape=}\DecValTok{21}\NormalTok{, }\AttributeTok{fill=}\StringTok{"black"}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{)  }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_m, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =}\NormalTok{ fluid\_std), }\AttributeTok{colour =} \StringTok{"blue"}\NormalTok{,}\AttributeTok{size =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_f, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =}\NormalTok{ fluid\_std), }\AttributeTok{colour =} \StringTok{"red"}\NormalTok{,}\AttributeTok{size =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_m, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented9)}\SpecialCharTok{$}\NormalTok{fit), }\AttributeTok{linewidth =} \DecValTok{2}\NormalTok{, }\AttributeTok{colour=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{65}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_f, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented10)}\SpecialCharTok{$}\NormalTok{fit), }\AttributeTok{linewidth =} \DecValTok{2}\NormalTok{, }\AttributeTok{colour=}\StringTok{"red"}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{65}\NormalTok{)  }\SpecialCharTok{+} \FunctionTok{geom\_ribbon}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{15}\NormalTok{, }\AttributeTok{fill =} \StringTok{"red"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ dat\_f, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented10)}\SpecialCharTok{$}\NormalTok{fit, }\AttributeTok{ymin =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented10)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{{-}} \FunctionTok{broken.line}\NormalTok{(fit\_segmented10, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{), }\AttributeTok{ymax =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented10)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{+} \FunctionTok{broken.line}\NormalTok{(fit\_segmented10, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{))) }\SpecialCharTok{+} \FunctionTok{geom\_ribbon}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{15}\NormalTok{, }\AttributeTok{fill =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ dat\_m, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented9)}\SpecialCharTok{$}\NormalTok{fit, }\AttributeTok{ymin =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented9)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{{-}} \FunctionTok{broken.line}\NormalTok{(fit\_segmented9, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{), }\AttributeTok{ymax =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented9)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{+} \FunctionTok{broken.line}\NormalTok{(fit\_segmented9, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{))) }\SpecialCharTok{+} 
+    \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"**Age vs Fluid Cognitive Ability**  }
+\StringTok{    \textless{}span style=\textquotesingle{}color:red; font{-}size:11pt\textquotesingle{}\textgreater{}**Females = Red**\textless{}/span\textgreater{},}
+\StringTok{    \textless{}span style=\textquotesingle{}color:blue; font{-}size:11pt\textquotesingle{}\textgreater{}**Males = Blue**\textless{}/span\textgreater{}"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Age (years)"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Fluid Cognition Composite (z{-}score)"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{plot.title =} \FunctionTok{element\_markdown}\NormalTok{(}\AttributeTok{lineheight =} \FloatTok{1.1}\NormalTok{, }\AttributeTok{size =} \DecValTok{16}\NormalTok{),}
+    \AttributeTok{legend.text =} \FunctionTok{element\_markdown}\NormalTok{(}\AttributeTok{size =} \DecValTok{11}\NormalTok{),}
+    \AttributeTok{plot.caption =} \FunctionTok{element\_markdown}\NormalTok{(}\AttributeTok{size =} \DecValTok{9}\NormalTok{, }\AttributeTok{hjust =}\NormalTok{ .}\DecValTok{5}\NormalTok{),}
+    \AttributeTok{axis.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{12}\NormalTok{)}
+\NormalTok{  )}\SpecialCharTok{+} \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{51}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dotted"}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{size=}\DecValTok{1}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{65}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dotted"}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{size=}\DecValTok{1}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggsave}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"figures"}\NormalTok{, }\StringTok{"age\_fluid\_sex.png"}\NormalTok{), sex\_fluid, }\AttributeTok{width =} \FloatTok{6.5}\NormalTok{, }\AttributeTok{height =} \DecValTok{4}\NormalTok{, }\AttributeTok{units=} \StringTok{"in"}\NormalTok{, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Verbal ability by sex
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat\_m }\OtherTok{\textless{}{-}}\NormalTok{ dat\_all }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Gender }\SpecialCharTok{==} \StringTok{"M"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(age, verbal\_std, Gender) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{()}
+\NormalTok{dat\_f }\OtherTok{\textless{}{-}}\NormalTok{ dat\_all }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{filter}\NormalTok{(Gender }\SpecialCharTok{==} \StringTok{"F"}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(age, verbal\_std, Gender) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{()}
+
+
+\NormalTok{(sex\_verbal }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =} \ConstantTok{NULL}\NormalTok{,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\FloatTok{65.5}\NormalTok{, }\AttributeTok{y =}\NormalTok{ .}\DecValTok{28}\NormalTok{), }\AttributeTok{size =}\DecValTok{5}\NormalTok{, }\AttributeTok{shape=}\DecValTok{21}\NormalTok{, }\AttributeTok{fill=}\StringTok{"black"}\NormalTok{, }\AttributeTok{color=}\StringTok{"black"}\NormalTok{)  }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_m, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =}\NormalTok{ verbal\_std), }\AttributeTok{colour =} \StringTok{"blue"}\NormalTok{,}\AttributeTok{size =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_f, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =}\NormalTok{ verbal\_std), }\AttributeTok{colour =} \StringTok{"red"}\NormalTok{,}\AttributeTok{size =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{)  }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_m, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented11)}\SpecialCharTok{$}\NormalTok{fit), }\AttributeTok{linewidth =} \DecValTok{2}\NormalTok{, }\AttributeTok{colour=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{65}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{data =}\NormalTok{ dat\_f, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented12)}\SpecialCharTok{$}\NormalTok{fit), }\AttributeTok{linewidth =} \DecValTok{2}\NormalTok{, }\AttributeTok{colour=}\StringTok{"red"}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{65}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_ribbon}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{15}\NormalTok{, }\AttributeTok{fill =} \StringTok{"red"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ dat\_f, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented12)}\SpecialCharTok{$}\NormalTok{fit, }\AttributeTok{ymin =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented12)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{{-}} \FunctionTok{broken.line}\NormalTok{(fit\_segmented12, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{), }\AttributeTok{ymax =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented12)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{+} \FunctionTok{broken.line}\NormalTok{(fit\_segmented12, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{))) }\SpecialCharTok{+} \FunctionTok{geom\_ribbon}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{15}\NormalTok{, }\AttributeTok{fill =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ dat\_m, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ age, }\AttributeTok{y =} \FunctionTok{broken.line}\NormalTok{(fit\_segmented11)}\SpecialCharTok{$}\NormalTok{fit, }\AttributeTok{ymin =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented11)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{{-}} \FunctionTok{broken.line}\NormalTok{(fit\_segmented11, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{), }\AttributeTok{ymax =}\NormalTok{ (}\FunctionTok{broken.line}\NormalTok{(fit\_segmented11)}\SpecialCharTok{$}\NormalTok{fit }\SpecialCharTok{+} \FunctionTok{broken.line}\NormalTok{(fit\_segmented11, }\AttributeTok{se.fit =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{se.fit}\SpecialCharTok{*}\FloatTok{1.96}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"**Age vs Crystallized Cognitive Ability**  }
+\StringTok{    \textless{}span style=\textquotesingle{}color:red; font{-}size:11pt\textquotesingle{}\textgreater{}**Females = Red**\textless{}/span\textgreater{},}
+\StringTok{    \textless{}span style=\textquotesingle{}color:blue; font{-}size:11pt\textquotesingle{}\textgreater{}**Males = Blue**\textless{}/span\textgreater{}"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Age (years)"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Crystallized Cognition Composite (z{-}score)"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{plot.title =} \FunctionTok{element\_markdown}\NormalTok{(}\AttributeTok{lineheight =} \FloatTok{1.1}\NormalTok{, }\AttributeTok{size =} \DecValTok{16}\NormalTok{),}
+    \AttributeTok{legend.text =} \FunctionTok{element\_markdown}\NormalTok{(}\AttributeTok{size =} \DecValTok{11}\NormalTok{),}
+    \AttributeTok{plot.caption =} \FunctionTok{element\_markdown}\NormalTok{(}\AttributeTok{size =} \DecValTok{9}\NormalTok{, }\AttributeTok{hjust =}\NormalTok{ .}\DecValTok{5}\NormalTok{),}
+    \AttributeTok{axis.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{12}\NormalTok{)}
+\NormalTok{  )}\SpecialCharTok{+} \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{56}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dotted"}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{size=}\DecValTok{1}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{75}\NormalTok{, }\AttributeTok{linetype=}\StringTok{"dotted"}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{size=}\DecValTok{1}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1_primary_analyses_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggsave}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"figures"}\NormalTok{, }\StringTok{"age\_verbal\_sex.png"}\NormalTok{), sex\_verbal, }\AttributeTok{width =} \FloatTok{6.5}\NormalTok{, }\AttributeTok{height =} \DecValTok{4}\NormalTok{, }\AttributeTok{units=} \StringTok{"in"}\NormalTok{, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{two-mediator-sequential-mediation}{%
+\subsection{Two mediator sequential
+mediation}\label{two-mediator-sequential-mediation}}
+
+Define wrapper function for lavaan::sem()
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{serial\_med }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, m1, m2, y, cov, dat, }\AttributeTok{boot =} \DecValTok{5000}\NormalTok{, }\AttributeTok{seeder =} \DecValTok{100}\NormalTok{) \{}
+  
+  \FunctionTok{set.seed}\NormalTok{(seeder)}
+  
+  \CommentTok{\# Ensure the model string is properly formatted using str\_glue}
+\NormalTok{  med.model }\OtherTok{\textless{}{-}} \FunctionTok{str\_glue}\NormalTok{(}\StringTok{"}
+\StringTok{    \# Regressions}
+\StringTok{    \{m1\} \textasciitilde{} a1*\{x\} + cov1*\{cov\}  \# Label the a coefficient in the M1 regression.}
+\StringTok{    \{m2\} \textasciitilde{} a2*\{x\} + d21*\{m1\} + cov2*\{cov\}  \# Label the a coefficientS in the M2 regression.}
+\StringTok{    \{y\} \textasciitilde{} cPrime*\{x\} + b1*\{m1\} + b2*\{m2\} + cov3*\{cov\}}
+
+\StringTok{    \# Define New Parameters (products of coefficients)}
+\StringTok{    ab1 := a1 * b1}
+\StringTok{    ab2 := a2 * b2}
+\StringTok{    ab3 := a1 * d21 * b2}
+\StringTok{    c := cPrime + ab1 + ab2 + ab3}
+\StringTok{  "}\NormalTok{, }\AttributeTok{.sep =} \StringTok{""}\NormalTok{)}
+
+ \CommentTok{\# Fit the model using lavaan\textquotesingle{}s sem function}
+\NormalTok{  fit }\OtherTok{\textless{}{-}}\NormalTok{ lavaan}\SpecialCharTok{::}\FunctionTok{sem}\NormalTok{(}\AttributeTok{model =}\NormalTok{ med.model, }\AttributeTok{data =}\NormalTok{ dat, }\AttributeTok{test =} \StringTok{"bootstrap"}\NormalTok{, }\AttributeTok{bootstrap =}\NormalTok{ boot)}
+
+  \CommentTok{\# Extract parameter estimates, including bootstrapping if needed}
+\NormalTok{  param.est }\OtherTok{\textless{}{-}} \FunctionTok{parameterEstimates}\NormalTok{(fit, }\AttributeTok{standardized =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{level =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{boot.ci.type =} \StringTok{"bca.simple"}\NormalTok{)}
+  
+  \FunctionTok{return}\NormalTok{(param.est)  }\CommentTok{\# Return the parameter estimates}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{run-mediation-analyses}{%
+\section{Run mediation analyses}\label{run-mediation-analyses}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Age {-}\textgreater{} PReFx {-}\textgreater{} WMSA {-}\textgreater{} Fluid Cognition (sex controlled)}
+\NormalTok{prefx\_fluid }\OtherTok{\textless{}{-}} \FunctionTok{serial\_med}\NormalTok{(}\AttributeTok{x =} \StringTok{"age"}\NormalTok{, }\AttributeTok{m1 =} \StringTok{"prefx\_std"}\NormalTok{, }\AttributeTok{m2 =}  \StringTok{"log\_hypo"}\NormalTok{, }\AttributeTok{y =} \StringTok{"fluid\_std"}\NormalTok{, }\AttributeTok{cov =} \StringTok{"sex"}\NormalTok{, }\AttributeTok{dat =}\NormalTok{ dat\_all, }\AttributeTok{boot =} \DecValTok{100}\NormalTok{)}
+
+\CommentTok{\# Age {-}\textgreater{} PReFx {-}\textgreater{} WMSA {-}\textgreater{} Verbal Cognition (sex controlled)}
+\NormalTok{prefx\_verbal }\OtherTok{\textless{}{-}} \FunctionTok{serial\_med}\NormalTok{(}\AttributeTok{x =} \StringTok{"age"}\NormalTok{, }\AttributeTok{m1 =} \StringTok{"prefx\_std"}\NormalTok{, }\AttributeTok{m2 =}  \StringTok{"log\_hypo"}\NormalTok{, }\AttributeTok{y =} \StringTok{"verbal\_std"}\NormalTok{, }\AttributeTok{cov =} \StringTok{"sex"}\NormalTok{, }\AttributeTok{dat =}\NormalTok{ dat\_all, }\AttributeTok{boot =} \DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{correct-p-values-for-two-mediator-serial-indirect-effect-via-holm-bonferroni-method}{%
+\section{Correct p-values for two-mediator serial indirect effect via
+Holm-Bonferroni
+method}\label{correct-p-values-for-two-mediator-serial-indirect-effect-via-holm-bonferroni-method}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# options(scipen = 999) \# stop use of scientific notation}
+\NormalTok{p.vec.prefx }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(prefx\_fluid}\SpecialCharTok{$}\NormalTok{pvalue[}\DecValTok{18}\NormalTok{], prefx\_verbal}\SpecialCharTok{$}\NormalTok{pvalue[}\DecValTok{18}\NormalTok{])}
+\NormalTok{p.holm.prefx }\OtherTok{\textless{}{-}} \FunctionTok{p.adjust}\NormalTok{(}\AttributeTok{p =}\NormalTok{ p.vec.prefx, }\AttributeTok{method =} \StringTok{"holm"}\NormalTok{)}
+\NormalTok{p.holm.prefx}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.04386 0.13175
+\end{verbatim}
+
+\end{document}

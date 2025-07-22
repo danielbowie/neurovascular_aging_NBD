@@ -1,0 +1,8 @@
+# .Rprofile
+
+# Automatically activate renv when project is loaded
+source("renv/activate.R")
+
+options(stringsAsFactors = FALSE)
+library(here)
+

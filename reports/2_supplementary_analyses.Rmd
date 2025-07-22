@@ -1,0 +1,463 @@
+---
+title: "Supplementary Analyses"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r, echo = FALSE, message = FALSE}
+dat_sup <- read_csv(here("data", "merged_data_final.csv"))
+
+dat_m <- dat_sup %>% filter(Sex == "M")
+dat_f <- dat_sup %>% filter(Sex == "F")
+```
+
+## Create function to run piecewise analyses and gather relevant output in single dataframe
+```{r}
+run_segmented_analysis <- function(data, outcome_var, alternative = "two.sided", npsi = 1, seed = 100) {
+  stopifnot(outcome_var %in% names(data))
+
+  # Set seed for reproducibility
+  set.seed(seed)
+
+  # Formula
+  formula <- as.formula(paste(outcome_var, "~ age"))
+
+  # Fit linear and segmented models
+  fit_lm <- lm(formula, data = data)
+  fit_seg <- segmented::segmented(fit_lm, seg.Z = ~ age, npsi = npsi)
+
+  # Extract breakpoint estimate and CI
+  bp_est <- segmented::summary.segmented(fit_seg)$psi["psi1.age", "Est."]
+  bp_ci <- confint.segmented(fit_seg)["psi1.age", c("CI(95%).low", "CI(95%).up")]
+
+  # Slope estimates before and after breakpoint
+  slopes <- segmented::slope(fit_seg)$age
+
+  # Davies test for slope difference
+  pscore <- segmented::pscore.test(fit_seg, seg.Z = ~ age, k = 10, alternative = alternative)$p.value
+
+  # Tidy output
+  tibble::tibble(
+    outcome = outcome_var,
+    breakpoint = round(bp_est, 2),
+    ci_lower = round(bp_ci[1], 2),
+    ci_upper = round(bp_ci[2], 2),
+    slope_before = round(slopes[1], 4),
+    slope_after = round(slopes[2], 4),
+    slope_diff = round(slopes[2] - slopes[1], 4),
+    pscore_pval = signif(pscore, 3),
+    model = list(fit_seg)
+  )
+}
+
+```
+
+## Define a function for reproducing breakpoint plots
+```{r}
+make_breakpoint_plot <- function(data,
+                                 age_var,
+                                 y_var,
+                                 fit_object,
+                                 breakpoint_coords = NULL,
+                                 secondary_breaks = NULL,
+                                 plot_tag = NULL,
+                                 title = NULL,
+                                 subtitle = NULL,
+                                 y_label = NULL,
+                                 ribbon_color = "black",
+                                 line_color = "blue") {
+  # Extract fitted values and confidence intervals from segmented model
+  fit_vals <- broken.line(fit_object)$fit
+  se_vals  <- broken.line(fit_object, se.fit = TRUE)$se.fit
+  ribbon_low  <- fit_vals - 1.96 * se_vals
+  ribbon_high <- fit_vals + 1.96 * se_vals
+
+  # Auto-calculate breakpoint_coords if not provided
+  if (is.null(breakpoint_coords)) {
+    bp_x <- tryCatch(segmented::summary.segmented(fit_object)$psi["psi1.age", "Est."], error = function(e) NA)
+    bp_y <- tryCatch(predict(fit_object, newdata = data.frame(age = bp_x)), error = function(e) NA)
+    if (!is.na(bp_x) && !is.na(bp_y)) {
+      breakpoint_coords <- c(bp_x, bp_y)
+    }
+  }
+
+  # Try to auto-extract CI bounds if not supplied
+  if (is.null(secondary_breaks)) {
+    secondary_breaks <- tryCatch(confint.segmented(fit_object)["psi1.age", c("CI(95%).low", "CI(95%).up")], error = function(e) NULL)
+  }
+
+  # Begin ggplot
+  p <- ggplot(data, aes_string(x = age_var, y = y_var)) +
+
+    # Add dot at estimated breakpoint
+    {
+      if (!is.null(breakpoint_coords)) {
+        geom_point(data = NULL,
+                   aes(x = breakpoint_coords[1], y = breakpoint_coords[2]),
+                   shape = 19, colour = "black", size = 4)
+      }
+    } +
+
+    # Add fitted line
+    geom_line(aes_string(x = age_var, y = "fit_vals"),
+              linewidth = 2, colour = line_color, alpha = 0.65) +
+
+    # Add confidence ribbon
+    geom_ribbon(aes_string(
+      x = age_var,
+      y = "fit_vals",
+      ymin = "ribbon_low",
+      ymax = "ribbon_high"
+    ),
+    fill = ribbon_color, alpha = 0.15) +
+
+    # Raw data points colored by sex
+    geom_point(aes(color = Sex), size = 2, alpha = 0.65) +
+
+    # Add vertical lines at CI bounds
+    {
+      if (!is.null(secondary_breaks)) {
+        geom_vline(data = data.frame(x = secondary_breaks),
+                   aes(xintercept = x),
+                   linetype = "dotted", colour = "black", size = 1, alpha = 0.5)
+      }
+    } +
+
+    # Labels
+    labs(
+      tag = plot_tag,
+      title = title,
+      subtitle = subtitle,
+      x = "Age (years)",
+      y = y_label
+    ) +
+
+    # Theme
+    theme(
+      axis.title     = element_text(size = 14),
+      plot.title     = element_text(face = "bold", size = 16),
+      plot.subtitle  = element_text(size = 14)
+    )
+
+  return(p)
+}
+
+
+```
+
+## Create wrapper function to reproduce piecewise sex plots
+```{r}
+make_dual_breakpoint_plot <- function(data_m,
+                                      data_f,
+                                      age_var,
+                                      y_var,
+                                      fit_m,
+                                      fit_f,
+                                      break_m = NULL,        # coordinate: c(x, y)
+                                      break_f = NULL,        # coordinate: c(x, y)
+                                      break_ci_m = NULL,
+                                      break_ci_f = NULL,
+                                      plot_tag = NULL,
+                                      title = NULL,
+                                      subtitle = NULL,
+                                      y_label = NULL,
+                                      point_size = 2,
+                                      ribbon_alpha = 0.15,
+                                      line_alpha = 0.65,
+                                      colors = c(male = "blue", female = "red")) {
+
+  # Fit predictions
+  fit_vals_m     <- broken.line(fit_m)$fit
+  se_vals_m      <- broken.line(fit_m, se.fit = TRUE)$se.fit
+  ribbon_low_m   <- fit_vals_m - 1.96 * se_vals_m
+  ribbon_high_m  <- fit_vals_m + 1.96 * se_vals_m
+
+  fit_vals_f     <- broken.line(fit_f)$fit
+  se_vals_f      <- broken.line(fit_f, se.fit = TRUE)$se.fit
+  ribbon_low_f   <- fit_vals_f - 1.96 * se_vals_f
+  ribbon_high_f  <- fit_vals_f + 1.96 * se_vals_f
+
+  # Get p-values for slope difference
+  pval_m <- tryCatch(pscore.test(fit_m, seg.Z = ~age, k = 10)$p.value, error = function(e) NA)
+  pval_f <- tryCatch(pscore.test(fit_f, seg.Z = ~age, k = 10)$p.value, error = function(e) NA)
+
+  sig_m <- !is.na(pval_m) && pval_m < 0.05
+  sig_f <- !is.na(pval_f) && pval_f < 0.05
+
+  # Auto breakpoints
+  if (is.null(break_m) && sig_m) {
+    bp_x_m <- tryCatch(summary(fit_m)$psi["psi1.age", "Est."], error = function(e) NA)
+    bp_y_m <- tryCatch(predict(fit_m, newdata = data.frame(age = bp_x_m)), error = function(e) NA)
+    if (!is.na(bp_x_m) && !is.na(bp_y_m)) break_m <- c(bp_x_m, bp_y_m)
+  }
+
+  if (is.null(break_f) && sig_f) {
+    bp_x_f <- tryCatch(summary(fit_f)$psi["psi1.age", "Est."], error = function(e) NA)
+    bp_y_f <- tryCatch(predict(fit_f, newdata = data.frame(age = bp_x_f)), error = function(e) NA)
+    if (!is.na(bp_x_f) && !is.na(bp_y_f)) break_f <- c(bp_x_f, bp_y_f)
+  }
+
+  # Auto CI bounds
+  if (is.null(break_ci_m) && sig_m) {
+    break_ci_m <- tryCatch(confint.segmented(fit_m)["psi1.age", c("CI(95%).low", "CI(95%).up")], error = function(e) NULL)
+  }
+
+  if (is.null(break_ci_f) && sig_f) {
+    break_ci_f <- tryCatch(confint.segmented(fit_f)["psi1.age", c("CI(95%).low", "CI(95%).up")], error = function(e) NULL)
+  }
+
+  # Begin plot
+  p <- ggplot() +
+
+    # Male breakpoint dot
+    {
+      if (sig_m && !is.null(break_m)) {
+        geom_point(data = NULL,
+                   aes(x = break_m[1], y = break_m[2]),
+                   shape = 21, size = 5, fill = "black", color = "black")
+      }
+    } +
+
+    # Female breakpoint dot
+    {
+      if (sig_f && !is.null(break_f)) {
+        geom_point(data = NULL,
+                   aes(x = break_f[1], y = break_f[2]),
+                   shape = 21, size = 5, fill = "black", color = "black")
+      }
+    } +
+
+    # Raw points
+    geom_point(data = data_m, aes_string(x = age_var, y = y_var),
+               colour = colors["male"], size = point_size, alpha = 0.5) +
+    geom_point(data = data_f, aes_string(x = age_var, y = y_var),
+               colour = colors["female"], size = point_size, alpha = 0.5) +
+
+    # Fitted lines
+    geom_line(data = data_m, aes_string(x = age_var, y = "fit_vals_m"),
+              linewidth = 2, colour = colors["male"], alpha = line_alpha) +
+    geom_line(data = data_f, aes_string(x = age_var, y = "fit_vals_f"),
+              linewidth = 2, colour = colors["female"], alpha = line_alpha) +
+
+    # Confidence ribbons
+    geom_ribbon(data = data_m,
+                aes_string(x = age_var, y = "fit_vals_m",
+                           ymin = "ribbon_low_m", ymax = "ribbon_high_m"),
+                fill = colors["male"], alpha = ribbon_alpha) +
+    geom_ribbon(data = data_f,
+                aes_string(x = age_var, y = "fit_vals_f",
+                           ymin = "ribbon_low_f", ymax = "ribbon_high_f"),
+                fill = colors["female"], alpha = ribbon_alpha) +
+
+    # CI lines for males
+    {
+      if (sig_m && !is.null(break_ci_m)) {
+        geom_vline(data = data.frame(x = break_ci_m),
+                   aes(xintercept = x),
+                   linetype = "dotted", color = colors["male"],
+                   size = 1, alpha = 0.5)
+      }
+    } +
+
+    # CI lines for females
+    {
+      if (sig_f && !is.null(break_ci_f)) {
+        geom_vline(data = data.frame(x = break_ci_f),
+                   aes(xintercept = x),
+                   linetype = "dotted", color = colors["female"],
+                   size = 1, alpha = 0.5)
+      }
+    } +
+
+    labs(
+      tag = plot_tag,
+      title = title,
+      subtitle = subtitle,
+      x = "Age (years)",
+      y = y_label
+    ) +
+
+    theme(
+      plot.title    = element_markdown(lineheight = 1.1, size = 16),
+      legend.text   = element_markdown(size = 11),
+      plot.caption  = element_markdown(size = 9, hjust = 0.5),
+      axis.title    = element_text(size = 12)
+    )
+
+  return(p)
+}
+
+```
+
+
+# Age vs Pulse Pressure piecewise regression
+```{r}
+(pulse_fit <- run_segmented_analysis(data = dat_sup, outcome = "pulse_pressure", alternative = "greater"))
+```
+
+## Scatterplot of piecewise relationship between age and pulse pressure
+```{r, echo=FALSE, warning=FALSE}
+(age_pulse <- make_breakpoint_plot(data = dat_sup,
+                                  age_var = "age",
+                                  y_var = "pulse_pressure",
+                                  fit_object = pulse_fit$model[[1]],
+                                  breakpoint_coords = NULL,
+                                  secondary_breaks = NULL,
+                                  title = "Age vs Systemic Pulse Pressure (Systolic - Diastolic)",
+                                  subtitle = "'Best' breakpoint estimate ≈ 51 years",
+                                  y_label = "Pulse Pressure (mmHg)"))
+
+ggsave(here("figures", "age_pulsepressure_piecewise.png"), age_pulse, width = 6.5, height = 4, units= "in")
+```
+
+# Piecewise relationship between age and pulse pressure by sex
+
+**Male pulse pressure**
+```{r}
+(pulse_m <- run_segmented_analysis(data = dat_m, outcome = "pulse_pressure", alternative = "greater"))
+```
+
+**Female pulse pressure**
+```{r}
+(pulse_f <- run_segmented_analysis(data = dat_f, outcome = "pulse_pressure", alternative = "greater"))
+```
+
+## Plot of piecewise relationship between age and pulse pressure by sex
+```{r, echo = FALSE, message = FALSE}
+(sex_pulse <- make_dual_breakpoint_plot(data_m = dat_m,
+                                       data_f = dat_f,
+                                       age_var = "age",
+                                       y_var = "pulse_pressure",
+                                       fit_m = pulse_m$model[[1]],
+                                       fit_f = pulse_f$model[[1]],
+                                       break_m = NULL,        # coordinate: c(x, y)
+                                       break_f = NULL,        # coordinate: c(x, y)
+                                       break_ci_m = NULL,
+                                       break_ci_f = NULL,
+                                       plot_tag = NULL,
+                                       title = "**Age vs Systemic Pulse Pressure (Systolic - Diastolic)**  
+    <span style='color:red; font-size:11pt'>**Females = Red**</span>,
+    <span style='color:blue; font-size:11pt'>**Males = Blue**</span>",
+                                       subtitle = NULL,
+                                       y_label = "Pulse Pressure (mmHg)"))
+
+
+ggsave(here("figures", "age_pulsepressure_sex.png"), sex_pulse, width = 6.5, height = 4, units= "in")
+```
+
+**Define a reusable function to specify SEM models and fit them using lavaan::sem()**
+```{r}
+serial_med <- function(x, m1, m2, y, cov, dat, boot = 5000, seeder = 100) {
+  
+  set.seed(seeder)
+  
+  # Ensure the model string is properly formatted using str_glue
+  med.model <- str_glue("
+    # Regressions
+    {m1} ~ a1*{x} + cov1*{cov}  # Label the a coefficient in the M1 regression.
+    {m2} ~ a2*{x} + d21*{m1} + cov2*{cov}  # Label the a coefficientS in the M2 regression.
+    {y} ~ cPrime*{x} + b1*{m1} + b2*{m2} + cov3*{cov}
+
+    # Define New Parameters (products of coefficients)
+    ab1 := a1 * b1
+    ab2 := a2 * b2
+    ab3 := a1 * d21 * b2
+    c := cPrime + ab1 + ab2 + ab3
+  ", .sep = "")
+
+ # Fit the model using lavaan's sem function
+  fit <- lavaan::sem(model = med.model, data = dat, test = "bootstrap", bootstrap = boot)
+
+  # Extract parameter estimates, including bootstrapping if needed
+  param_est <- parameterEstimates(fit, standardized = TRUE, level = 0.95, boot.ci.type = "bca.simple")
+  
+  #  Tidy output
+  tibble::tibble(
+    parameter = c("a1*b1", "a2*b2", "a1*d21*b2"),
+    coef_std = c(param_est[param_est$label == "ab1", "std.all"],
+                 param_est[param_est$label == "ab2", "std.all"],
+                 param_est[param_est$label == "ab3", "std.all"]),
+    ci_lower = c(param_est[param_est$label == "ab1", "ci.lower"],
+                 param_est[param_est$label == "ab2", "ci.lower"],
+                 param_est[param_est$label == "ab3", "ci.lower"]),
+    ci_upper = c(param_est[param_est$label == "ab1", "ci.upper"],
+                 param_est[param_est$label == "ab2", "ci.upper"],
+                 param_est[param_est$label == "ab3", "ci.upper"]),
+    p_value_uncorrected = c(param_est[param_est$label == "ab1", "pvalue"],
+                 param_est[param_est$label == "ab2", "pvalue"],
+                 param_est[param_est$label == "ab3", "pvalue"])
+  )
+}
+```
+
+**Age -> Pulse Pressure -> WMSA -> Fluid Cognition (sex controlled)**
+```{r}
+(pulse_fluid <- serial_med(x = "age", m1 = "pulse_pressure", m2 =  "log_hypo", y = "fluid_std", cov = "Sex", dat = dat_sup, boot = 5000))
+```
+
+**Age -> Pulse Pressure -> WMSA -> Verbal Cognition (sex controlled)**
+```{r}
+(pulse_verbal <- serial_med(x = "age", m1 = "pulse_pressure", m2 =  "log_hypo", y = "verbal_std", cov = "Sex", dat = dat_sup, boot = 5000))
+```
+
+
+# Validation of neuropsych harmonization 
+
+**Breakdown of sex by study subsample (aged 50-70) used for harmonization**
+```{r, echo = FALSE, message = FALSE}
+dat_sup$Studies <- ifelse(dat_sup$Study == "arr", "Study 1", ifelse(dat_sup$Study == "opa", "Study 2", ifelse(dat_sup$Study == "pea", "Study 3", "Study 4")))
+
+dat_sup %>% group_by(Studies, Sex) %>% summarise(n_sex = n())
+```
+
+
+**Perform polynomial regression on fluid and verbal scores, compute partial R-squared for linear and quadratic terms, and create scatterplots with linear and quadratic trends**
+```{r include = FALSE, echo=FALSE, warning = FALSE}
+
+dat_sup$Studies <- ifelse(dat_sup$Study == "arr", "Study 1", ifelse(dat_sup$Study == "opa", "Study 2", ifelse(dat_sup$Study == "pea", "Study 3", "Study 4")))
+
+summary(lm(scale(fluid_std)~scale(poly(age,2, raw = FALSE)), dat_sup))
+
+(res1 <- jtools::summ(lm(scale(fluid_std)~scale(poly(age,2, raw = FALSE)), dat_sup), part.corr = TRUE)) 
+fluid.linear.partialr <- (res1[[1]][2,5])^2
+fluid.linear.partialr # partial R-squared for linear term
+fluid.quad.partialr <- (res1[[1]][3,5])^2
+fluid.quad.partialr # partial R-squared for quadratic term
+
+(res2 <- jtools::summ(lm(scale(verbal_std)~scale(poly(age,2, raw = FALSE)), dat_sup), part.corr = TRUE))
+verbal.linear.partialr2 <- (res2[[1]][2,5])^2
+verbal.linear.partialr2 # partial R-squared for linear term
+verbal.quad.partialr2 <- (res2[[1]][3,5])^2
+verbal.quad.partialr2  # partial R-squared for quadratic term
+
+formula <- y ~ poly(x, 2, raw =FALSE)
+```
+
+```{r, echo = FALSE, warning = FALSE}
+(fluid.img <- dat_sup %>% ggplot(mapping = aes(age, fluid_std)) + geom_smooth(method="lm", formula = y~x, col = "red") + geom_smooth(method="lm", formula = formula, col = "black") + geom_point(size = 2, aes(col = Studies), alpha = .75) + labs(title = "Age vs Fluid Cognition", subtitle = "Statistically Harmonized Scores", x = "Age (years)", y = "Fluid Ability (z-score)"))
+
+(verbal.img <- dat_sup %>% ggplot(mapping = aes(age, verbal_std))+ geom_smooth(method="lm", formula = y~x, col = "black") + geom_smooth(method="lm", formula = formula, col = "red") + geom_point(size = 2, aes(col = Studies), alpha = .75) + labs(title = "Age vs Crystallized Cognition", subtitle = "Statistically Harmonized Scores", x = "Age (years)", y = "Crystallized Ability (z-score)"))
+
+ggsave(here("figures", "age_fluid_harmonization.png"), fluid.img, width = 6.5, height = 4, units= "in")
+ggsave(here("figures", "age_verbal_harmonization.png"), verbal.img, width = 6.5, height = 4, units = "in")
+```
+
+
+# T1-w WMH vs T2-FLAIR Comparison, N = 47
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+options(scipen = 0) # use scientific notation
+
+peri.dat <- read_csv(here("data", "T2_volumes.csv")) %>% dplyr::select(Subj_ID, LESION_VOL_PERIVENTRICULAR)
+peri.dat$Subj_ID <- as.numeric(peri.dat$Subj_ID)
+
+wmh <- read_csv(here("data", "T1_volumes.csv"))
+
+wmh <- wmh %>% left_join(dat_sup, by = "Subj_ID") %>% mutate(WMhypo.log = log10(WMhypo_raw)) %>% mutate(WMhyper.log = log10(LESION_VOL_mm3)) %>% mutate(WMhypo.proc.log = log10(WMhypo_proc)) %>% left_join(peri.dat, by = "Subj_ID") %>% mutate(log.peri = log10(LESION_VOL_PERIVENTRICULAR))
+
+
+p1 <- wmh %>% ggplot(aes(WMhypo.log, WMhyper.log)) + geom_smooth(method='lm', formula = y~x) + geom_point(size = 2)+ stat_cor(method = "pearson", cor.coef.name = "r", size = 5, digits = 3) + labs(title = "T1w WM-Hypointensity vs T2-FLAIR WM-Hyperintensity", x = "log(WM-Hypo Volume in mm³)", y = "log(WM-Hyper Volume in mm³)")
+p1
+
+ggsave(here("figures", "t1_t2_scatterplot.png"), p1, width = 6.5, height = 4, units= "in")
+```

@@ -1,0 +1,3 @@
+"0","(pulse_verbal <- serial_med(x = ""age"", m1 = ""pulse_pressure"", m2 =  ""log_hypo"", y = ""verbal_std"", cov = ""Sex"", dat = dat_sup, boot = 100))"
+"2","Warning: lavaan->lav_data_full():  
+   some observed variances are (at least) a factor 1000 times larger than others; use varTable(fit) to investigate"

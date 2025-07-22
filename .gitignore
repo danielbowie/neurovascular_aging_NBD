@@ -1,0 +1,13 @@
+# R and RStudio
+.Rhistory
+.RData
+.Rproj.user/
+.Ruserdata
+
+# renv local libraries
+renv/library/
+renv/library_backup/
+
+# OS-specific
+.DS_Store
+Thumbs.db
