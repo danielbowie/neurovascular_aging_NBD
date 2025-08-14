@@ -2,7 +2,7 @@
 
 This repository contains the data analysis code used for the manuscript:
 
-> Bowie, D., et al. (2023). *Neurovascular mechanisms of cognitive aging: Sex-related differences in the average progression of arteriosclerosis, white matter atrophy, and cognitive decline*. *Neurobiology of Disease*. https://doi.org/10.1016/j.nbd.2024.106653
+> Bowie, D., et al. (2024). *Neurovascular mechanisms of cognitive aging: Sex-related differences in the average progression of arteriosclerosis, white matter atrophy, and cognitive decline*. *Neurobiology of Disease*. https://doi.org/10.1016/j.nbd.2024.106653
 
 ## Overview
 
