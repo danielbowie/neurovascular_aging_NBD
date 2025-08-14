@@ -91,7 +91,7 @@ renv::install("https://cran.r-project.org/src/contrib/Archive/segmented/segmente
 
 If using or adapting this code, please cite the original paper:
 
-> Bowie, D., et al. (2023). *Neurovascular mechanisms of cognitive aging: Sex-related differences in the average progression of arteriosclerosis, white matter atrophy, and cognitive decline*. *Neurobiology of Disease*. https://doi.org/10.1016/j.nbd.2024.106653
+> Bowie, D., et al. (2024). *Neurovascular mechanisms of cognitive aging: Sex-related differences in the average progression of arteriosclerosis, white matter atrophy, and cognitive decline*. *Neurobiology of Disease*. https://doi.org/10.1016/j.nbd.2024.106653
 
 ---
 
