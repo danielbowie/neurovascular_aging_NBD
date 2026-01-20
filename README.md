@@ -97,7 +97,7 @@ If using or adapting this code, please cite the original paper:
 
 ## Contact
 
-If you have any questions about the analysis, feel free to reach out via dcbowie2@gmail.com or open an issue on this repo.
+If you have any questions about the analysis, feel free to reach out via daniel.christopher.bowie@gmail.com or open an issue on this repo.
 
 ---
 
